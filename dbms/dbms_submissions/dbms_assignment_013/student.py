@@ -71,7 +71,7 @@ class Student:
             else:
                   return False
       
-      @staticmethod            
+      '''@staticmethod            
       def filter(**kwargs):
             field_list=['student_id','name','age','score']
             for key,value in kwargs.items():
@@ -112,11 +112,16 @@ class Student:
                         record_list.append(x)
                   return record_list
             else:
-                  return record_list
+                  return record_list'''
+                  
       
-      '''@staticmethod
+            
+            
+ 
+
+      @staticmethod
       def filter(**kwargs):
-            out=[]
+            
             for key,value in kwargs.items():
                   if (key=='age' or key=='score' or key=='student_id' or key=='name'):
                         record=(f"SELECT * FROM Student WHERE {key}='{value}'")
@@ -144,11 +149,18 @@ class Student:
                   else:
                         raise InvalidField
                   results=read_data(record)
-                  for i in results:
-                        student_obj=Student(i[1],i[2],i[3])
-                        student_obj.student_id=i[0]
-                        out.append(student_obj)
-            return out'''
+                  out=[]
+                  if len(results)==0:
+                        return out
+                  else:
+                        for i in results:
+                              student_obj= Student(i[1],i[2],i[3])
+                              student_obj.student_id=i[0]
+                              out.append(student_obj)
+            return out
+                  
+                  
+                  
           
 def write_data(sql_query):
 	import sqlite3
@@ -171,3 +183,7 @@ def read_data(sql_query):
 
 
         
+
+	
+	
+	
